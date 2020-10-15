@@ -1,0 +1,9 @@
+@mixin box-shadow($top, $left, $radius, $blur, $color, $inset: false)
+  @if $inset
+    box-shadow: inset $top $left $radius $blur $color
+    -webkit-box-shadow: inset $top $left $radius $blur $color
+    -moz-box-shadow: inset $top $left $radius $blur $color
+  @else
+    box-shadow: $top $left $radius $blur $color
+    -webkit-box-shadow: $top $left $radius $blur $color
+    -moz-box-shadow: $top $left $radius $blur $color
