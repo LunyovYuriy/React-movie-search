@@ -1,4 +1,4 @@
-export const API_KEY = '' //YOUR www.themoviedb.org API KEY;
+export const API_KEY = '' //your www.themoviedb.org API KEY;
 export const API_URL = 'https://api.themoviedb.org/3';
 export const IMG_URL = 'https://image.tmdb.org/t/p/original';
 

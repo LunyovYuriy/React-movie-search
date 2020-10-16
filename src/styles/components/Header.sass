@@ -1,0 +1,85 @@
+header
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: #1c313a
+  padding: 1rem 2rem
+  position: fixed
+  width: 100%
+  z-index: 999
+  @include medium
+    flex-direction: column
+    position: relative
+    padding: 1rem 2rem 2rem 2rem
+  .logo
+    margin: 0
+    padding: 0
+    display: flex
+    align-items: center
+    text-transform: uppercase
+    width: 16rem
+    color: #fff
+    @include medium
+      width: 100%
+      margin-bottom: 1rem
+      justify-content: center
+    h1
+      font-size: 1.5rem
+      font-weight: bold
+      line-height: 1
+      @include medium
+        font-size: 2rem
+    svg
+      font-size: 3rem
+      margin-right: 1rem
+
+.form
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  flex: 1
+  @include medium
+    width: 100%
+    flex-direction: column
+    align-items: center
+
+.input
+  width: 100%
+  font-size: 1.6rem
+  padding: 0.5rem 2rem
+  line-height: 2.8rem
+  border: none
+  border-radius: 20px
+  outline: none
+  margin: 0 1rem 0 0
+  background-color: #718792
+  color: #fff
+  font-weight: bold
+  &::placeholder
+    color: #fff
+  @include medium
+    margin-bottom: 1rem
+    margin-right: 0
+
+.button
+  display: inline-block
+  background-color: #455a64
+  text-transform: uppercase
+  color: white
+  padding: 1rem 2rem
+  border-radius: 20px
+  border: 1px solid transparent
+  outline: none
+  transition: all .3s
+  cursor: pointer
+  font-size: 1.4rem
+  text-align: center
+  font-weight: bold
+  &:hover
+    background-color: #718792
+  &:disabled
+    background-color: rgba(0, 0, 0, 0.3)
+    cursor: not-allowed
+  @include medium
+    width: 100%

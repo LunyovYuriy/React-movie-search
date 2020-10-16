@@ -55,7 +55,7 @@ export const searchMovies = (query, page) => {
             dispatch(setError(data.status_message));
           });
         }
-        if (data.results.length === 0) {
+        if (data?.results?.length === 0) {
           batch(() => {
             dispatch(setError('Nothing found, please try again'));
           });
@@ -74,6 +74,13 @@ export const getMovieDetails = (id) => {
   return (dispatch) => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (!data.success) {
+          batch(() => {
+            dispatch(setError(data.status_message));
+          });
+        }
+        dispatch(setGeneralValue('movieDetails', data));
+      });
   };
 };

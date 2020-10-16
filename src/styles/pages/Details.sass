@@ -1,0 +1,43 @@
+.details-container
+  background-color: #fff
+  position: relative
+.backdrop
+  &-poster
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: flex-end
+  &-image
+    max-height: 40rem
+    object-fit: cover
+  &-title
+    width: 100%
+    text-align: center
+    position: absolute
+    color: #fff
+    font-size: 5rem
+    background-color: rgba(0, 0, 0, 0.5)
+    padding: 1rem 0
+
+.details-info
+  padding: 1rem 2rem
+
+.back-link
+  position: absolute
+  left: 10px
+  top: 10px
+  display: flex
+  justify-content: center
+  z-index: 99
+  background-color: rgba(255, 255, 255, 0.8)
+  height: 4rem
+  width: 4rem
+  line-height: 3.5rem
+  border-radius: 30px
+  font-size: 3rem
+  font-weight: bold
+  transition: all .3s
+  &:hover
+    background-color: #fff
+  &::before
+    content: 	'‹'
