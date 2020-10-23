@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Rating from '../../Rating/Rating';
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import Rating from '../../../../../components/Rating/Rating';
+import InfoText from '../../../../../components/InfoText/InfoText';
 
 const ItemInfo = ({ id, title, releaseDate, voteAverage, overview }) => {
   let shortInfo = '';
@@ -19,11 +21,12 @@ const ItemInfo = ({ id, title, releaseDate, voteAverage, overview }) => {
       <Link to={`/details/${id}`}>
         <h1>{title}</h1>
       </Link>
-      <div className="info-container">
-        <p className="info-text">
-          <span>Release date: </span>
-          {releaseDate}
-        </p>
+      <div className="result-info">
+        <InfoText
+          label="Release date"
+          text={releaseDate}
+          icon={faCalendarCheck}
+        />
         <Rating rating={voteAverage} />
         <p>{overview.length ? shortInfo : 'No description'}</p>
       </div>

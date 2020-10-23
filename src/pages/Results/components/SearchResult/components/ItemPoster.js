@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { IMG_URL } from '../../../constants/general';
+import EmptyPhoto from '../../../../../components/EmptyPhoto/EmptyPhoto';
+import { IMG_URL } from '../../../../../constants/general';
 
 const ItemPoster = ({ id, poster }) => {
   return (
@@ -13,9 +14,7 @@ const ItemPoster = ({ id, poster }) => {
           className="poster-image"
         />
       ) : (
-        <div className="no-photo">
-          <p>No photo</p>
-        </div>
+        <EmptyPhoto />
       )}
     </Link>
   );

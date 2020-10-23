@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Details from '../pages/Details/Details';
 import Main from '../pages/Main/Main';
+import Results from '../pages/Results/Results';
 
 const AppRouter = () => {
   return (
@@ -12,6 +13,9 @@ const AppRouter = () => {
         <Switch>
           <Route path="/" exact>
             <Main />
+          </Route>
+          <Route path="/results">
+            <Results />
           </Route>
           <Route path="/details/:movieId">
             <Details />

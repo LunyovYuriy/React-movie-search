@@ -20,7 +20,7 @@ const Header = () => {
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(searchMovies(query));
-          history.push('/');
+          history.push('/results');
         }}>
         <input
           type="text"

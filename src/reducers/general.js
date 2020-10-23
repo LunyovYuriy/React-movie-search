@@ -9,6 +9,7 @@ function initialState() {
     pageNumber: 0,
     error: '',
     movieDetails: {},
+    popularMovies: [],
   };
 }
 

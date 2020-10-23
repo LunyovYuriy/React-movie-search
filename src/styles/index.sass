@@ -7,7 +7,12 @@
 @import './components/SearchResult.sass'
 @import './components/Loader.sass'
 @import './components/Rating.sass'
+@import './components/EmptyPhoto.sass'
+@import './components/InfoText.sass'
+@import './components/MovieCard.sass'
 @import './pages/Details.sass'
+@import './pages/Main.sass'
+
 
 
 *
@@ -29,6 +34,9 @@ a
 
 p
   font-size: 1.6rem
+  svg
+    margin-right: 0.3rem
+    width: 1.5rem
 
 small
   font-size: 1.2rem
@@ -50,3 +58,21 @@ img
 .error
   color: #f44336
   text-align: center
+
+.imdb-link
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 1.5rem 0
+  background-color: #f5c518
+  font-size: 1.5rem
+  font-weight: bold
+  transition: all .3s
+  &:hover
+    background-color: #e4b300
+
+.link-light
+  color: #37474f
+  transition: color 0.3s
+  &:hover
+    color: #78909c

@@ -72,6 +72,7 @@ export const searchMovies = (query, page) => {
 export const getMovieDetails = (id) => {
   const url = `${API_URL}/movie/${id}?api_key=${API_KEY}`;
   return (dispatch) => {
+    dispatch(setLoading(true));
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -80,7 +81,30 @@ export const getMovieDetails = (id) => {
             dispatch(setError(data.status_message));
           });
         }
-        dispatch(setGeneralValue('movieDetails', data));
+        batch(() => {
+          dispatch(setLoading(false));
+          dispatch(setGeneralValue('movieDetails', data));
+        });
+      });
+  };
+};
+
+export const getPopularMovies = () => {
+  const url = `${API_URL}/movie/popular?api_key=${API_KEY}&page=1`;
+  return (dispatch) => {
+    dispatch(setLoading(true));
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.success) {
+          batch(() => {
+            dispatch(setError(data.status_message));
+          });
+        }
+        batch(() => {
+          dispatch(setLoading(false));
+          dispatch(setGeneralValue('popularMovies', data.results));
+        });
       });
   };
 };

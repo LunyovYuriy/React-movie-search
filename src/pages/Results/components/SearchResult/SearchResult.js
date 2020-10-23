@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
-import Loader from '../Loader/Loader';
-import Pagination from '../Pagination/Pagination';
+import { useHistory } from 'react-router-dom';
+import Loader from '../../../../components/Loader/Loader';
+import Pagination from '../../../../components/Pagination/Pagination';
 import ItemInfo from './components/ItemInfo';
 import ItemPoster from './components/ItemPoster';
 
 const SearchResult = () => {
-  const { searchResult, error, isLoading } = useSelector(
+  const { searchResult, error, isLoading, query } = useSelector(
     (state) => state.general,
     shallowEqual,
   );
+  const history = useHistory();
+  useEffect(() => {
+    if (!query) {
+      history.push('/');
+    }
+  });
 
   if (isLoading) {
     return <Loader />;
@@ -24,13 +31,14 @@ const SearchResult = () => {
           id,
           title,
           poster_path: poster,
+          backdrop_path: backdrop,
           release_date: releaseDate,
           vote_average: voteAverage,
           overview,
         } = res;
         return (
           <div key={id} className="search-item">
-            <ItemPoster id={id} poster={poster} />
+            <ItemPoster id={id} poster={poster || backdrop} />
             <ItemInfo
               id={id}
               title={title}
