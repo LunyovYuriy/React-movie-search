@@ -46,7 +46,7 @@ const Details = () => {
     <p className="error">{error}</p>
   ) : (
     <div className="details-container">
-      <Link to="/results" className="back-link" />
+      <Link to="/React-movie-search/results" className="back-link" />
       <div className="backdrop-poster">
         {movieDetails?.backdrop_path || movieDetails?.poster_path ? (
           <img

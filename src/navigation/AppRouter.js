@@ -11,13 +11,13 @@ const AppRouter = () => {
       <Header />
       <div className="container">
         <Switch>
-          <Route path="/" exact>
+          <Route path="/React-movie-search" exact>
             <Main />
           </Route>
-          <Route path="/results">
+          <Route path="/React-movie-search/results">
             <Results />
           </Route>
-          <Route path="/details/:movieId">
+          <Route path="/React-movie-search/details/:movieId">
             <Details />
           </Route>
         </Switch>

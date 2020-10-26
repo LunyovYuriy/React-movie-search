@@ -18,7 +18,7 @@ const ItemInfo = ({ id, title, releaseDate, voteAverage, overview }) => {
 
   return (
     <div className="search-item-info">
-      <Link to={`/details/${id}`}>
+      <Link to={`/React-movie-search/details/${id}`}>
         <h1>{title}</h1>
       </Link>
       <div className="result-info">
@@ -30,7 +30,9 @@ const ItemInfo = ({ id, title, releaseDate, voteAverage, overview }) => {
         <Rating rating={voteAverage} />
         <p>{overview.length ? shortInfo : 'No description'}</p>
       </div>
-      <Link to={`/details/${id}`} className="button read-more-btn">
+      <Link
+        to={`/React-movie-search/details/${id}`}
+        className="button read-more-btn">
         Read more
       </Link>
     </div>

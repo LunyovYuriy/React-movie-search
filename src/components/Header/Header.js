@@ -11,7 +11,7 @@ const Header = () => {
   const { query } = useSelector((state) => state.general, shallowEqual);
   return (
     <header>
-      <Link to="/" className="logo">
+      <Link to="/React-movie-search" className="logo">
         <FontAwesomeIcon icon={faFilm} />
         <h1>React Movie Search</h1>
       </Link>
@@ -20,7 +20,7 @@ const Header = () => {
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(searchMovies(query));
-          history.push('/results');
+          history.push('/React-movie-search/results');
         }}>
         <input
           type="text"

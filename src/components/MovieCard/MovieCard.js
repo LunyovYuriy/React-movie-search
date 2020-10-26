@@ -5,7 +5,7 @@ import { IMG_URL } from '../../constants/general';
 
 const MovieCard = ({ title, poster, id }) => {
   return (
-    <Link to={`/details/${id}`} className="movie-card">
+    <Link to={`/React-movie-search/details/${id}`} className="movie-card">
       <h1>{title}</h1>
       <img src={`${IMG_URL}${poster}`} alt={poster} />
     </Link>

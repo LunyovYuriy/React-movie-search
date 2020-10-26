@@ -14,7 +14,7 @@ const SearchResult = () => {
   const history = useHistory();
   useEffect(() => {
     if (!query) {
-      history.push('/');
+      history.push('/React-movie-search');
     }
   });
 

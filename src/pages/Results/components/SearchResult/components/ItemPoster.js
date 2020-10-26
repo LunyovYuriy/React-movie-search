@@ -6,7 +6,7 @@ import { IMG_URL } from '../../../../../constants/general';
 
 const ItemPoster = ({ id, poster }) => {
   return (
-    <Link to={`/details/${id}`} className="poster-link">
+    <Link to={`/React-movie-search/details/${id}`} className="poster-link">
       {poster ? (
         <img
           src={`${IMG_URL}${poster}`}
