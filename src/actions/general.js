@@ -51,14 +51,10 @@ export const searchMovies = (query, page) => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.success) {
-          batch(() => {
-            dispatch(setError(data.status_message));
-          });
+          dispatch(setError(data.status_message));
         }
         if (data?.results?.length === 0) {
-          batch(() => {
-            dispatch(setError('Nothing found, please try again'));
-          });
+          dispatch(setError('Nothing found, please try again'));
         }
         batch(() => {
           dispatch(setLoading(false));
@@ -77,14 +73,26 @@ export const getMovieDetails = (id) => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.success) {
-          batch(() => {
-            dispatch(setError(data.status_message));
-          });
+          dispatch(setError(data.status_message));
         }
         batch(() => {
           dispatch(setLoading(false));
           dispatch(setGeneralValue('movieDetails', data));
         });
+      });
+  };
+};
+
+export const getMovieVideo = (id) => {
+  const url = `${API_URL}/movie/${id}/videos?api_key=${API_KEY}`;
+  return (dispatch) => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.success) {
+          dispatch(setError(data.status_message));
+        }
+        dispatch(setGeneralValue('videoKey', data.results[0]?.key));
       });
   };
 };
@@ -97,9 +105,7 @@ export const getPopularMovies = () => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.success) {
-          batch(() => {
-            dispatch(setError(data.status_message));
-          });
+          dispatch(setError(data.status_message));
         }
         batch(() => {
           dispatch(setLoading(false));

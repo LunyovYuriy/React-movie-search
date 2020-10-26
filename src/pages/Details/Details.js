@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import {
   faBookOpen,
@@ -9,7 +9,7 @@ import {
   faFlag,
   faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
-import { getMovieDetails } from '../../actions/general';
+import { getMovieDetails, getMovieVideo } from '../../actions/general';
 import EmptyPhoto from '../../components/EmptyPhoto/EmptyPhoto';
 import InfoText from '../../components/InfoText/InfoText';
 import Loader from '../../components/Loader/Loader';
@@ -18,13 +18,16 @@ import { IMG_URL } from '../../constants/general';
 
 const Details = () => {
   const { movieId } = useParams();
-  const { movieDetails, error, isLoading } = useSelector(
+  const { movieDetails, error, isLoading, videoKey } = useSelector(
     (state) => state.general,
     shallowEqual,
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getMovieDetails(movieId));
+    batch(() => {
+      dispatch(getMovieDetails(movieId));
+      dispatch(getMovieVideo(movieId));
+    });
   }, [dispatch, movieId]);
 
   const getGenres = () => {
@@ -96,21 +99,30 @@ const Details = () => {
             icon={faFileVideo}
           />
         )}
-        <InfoText
-          label={movieDetails?.budget ? 'Budget:' : 'No budget'}
-          text={
-            movieDetails?.budget !== 0
-              ? movieDetails?.budget?.toLocaleString()
-              : ''
-          }
-          icon={faDollarSign}
-        />
+        {movieDetails?.budget !== 0 && (
+          <InfoText
+            label="Budget:"
+            text={movieDetails?.budget}
+            icon={faDollarSign}
+          />
+        )}
         <Rating rating={movieDetails?.vote_average} />
         <InfoText
           label={movieDetails?.overview ? 'Description:' : 'No description'}
           icon={faBookOpen}
         />
         <p className="info-text">{movieDetails?.overview}</p>
+      </div>
+      <div className="youtube-video">
+        {videoKey && (
+          <iframe
+            title="youtube-video"
+            src={`https://www.youtube.com/embed/${videoKey}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
       </div>
       {movieDetails?.imdb_id && (
         <a
