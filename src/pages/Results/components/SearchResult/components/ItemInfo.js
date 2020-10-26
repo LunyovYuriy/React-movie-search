@@ -1,32 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getMovieDetails } from '../../../actions/general';
-import Rating from '../../Rating/Rating';
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import Rating from '../../../../../components/Rating/Rating';
+import InfoText from '../../../../../components/InfoText/InfoText';
 
 const ItemInfo = ({ id, title, releaseDate, voteAverage, overview }) => {
-  const dispatch = useDispatch();
   let shortInfo = '';
 
   if (overview.split('.')[0].length > 150) {
     shortInfo = `${overview.split('.')[0].slice(0, 150)}...`;
   } else {
-    shortInfo = `${overview.split('.')[0]}. ${overview.split('.')[1]}...`;
+    shortInfo = `${overview.split('.')[0]}${
+      overview?.split('.')[1] && `. ${overview.split('.')[1]}`
+    }...`;
   }
 
   return (
     <div className="search-item-info">
-      <Link to={`/details/${id}`} onClick={() => dispatch(getMovieDetails(id))}>
+      <Link to={`/details/${id}`}>
         <h1>{title}</h1>
       </Link>
-      <div className="info-container">
-        <p className="info-text">
-          <span>Release date: </span>
-          {releaseDate}
-        </p>
+      <div className="result-info">
+        <InfoText
+          label="Release date"
+          text={releaseDate}
+          icon={faCalendarCheck}
+        />
         <Rating rating={voteAverage} />
-        <p>{shortInfo}</p>
+        <p>{overview.length ? shortInfo : 'No description'}</p>
       </div>
       <Link to={`/details/${id}`} className="button read-more-btn">
         Read more

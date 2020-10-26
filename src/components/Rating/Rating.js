@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { faFrown, faStar } from '@fortawesome/free-solid-svg-icons';
+import InfoText from '../InfoText/InfoText';
 
 const Rating = ({ rating }) => {
-  const popularityMark = (rating / 10) * 100;
+  const popularityMark = (rating / 10) * 200;
   let color = '#870000';
-  if (popularityMark >= 50 && popularityMark <= 100) {
+  if (popularityMark >= 100 && popularityMark <= 200) {
     color = '#00e676';
-  } else if (popularityMark >= 30 && popularityMark <= 50) {
+  } else if (popularityMark >= 50 && popularityMark <= 100) {
     color = '#c8b900';
   }
   const ratingFill = {
@@ -16,9 +18,7 @@ const Rating = ({ rating }) => {
 
   return rating !== 0 ? (
     <>
-      <p className="info-text">
-        <span>Rating:</span>
-      </p>
+      <InfoText label="Rating:" icon={faStar} />
       <div className="rating-container">
         <div className="rating">
           <div style={ratingFill} className="rating-fill" />
@@ -27,9 +27,7 @@ const Rating = ({ rating }) => {
       </div>
     </>
   ) : (
-    <p className="info-text">
-      <span>No rating </span>
-    </p>
+    <InfoText label="No rating" icon={faFrown} />
   );
 };
 

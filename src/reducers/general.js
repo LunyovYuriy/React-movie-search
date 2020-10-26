@@ -8,6 +8,11 @@ function initialState() {
     totalPages: 0,
     pageNumber: 0,
     error: '',
+    movieDetails: {},
+    popularMovies: [],
+    topRatedMovies: [],
+    nowPlayingMovies: [],
+    videoKey: '',
   };
 }
 

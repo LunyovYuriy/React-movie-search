@@ -1,6 +1,8 @@
 import React from 'react';
 import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { searchMovies, setGeneralValue } from '../../actions/general';
 
 const Pagination = () => {
@@ -14,8 +16,8 @@ const Pagination = () => {
       <ReactPaginate
         forcePage={pageNumber}
         pageCount={totalPages}
-        previousLabel="<<"
-        nextLabel=">>"
+        previousLabel={<FontAwesomeIcon icon={faArrowLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faArrowRight} />}
         containerClassName="pagination-container"
         pageLinkClassName="pagination-page"
         pageClassName="pagination-list"
