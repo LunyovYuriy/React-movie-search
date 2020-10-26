@@ -10,6 +10,8 @@ function initialState() {
     error: '',
     movieDetails: {},
     popularMovies: [],
+    topRatedMovies: [],
+    nowPlayingMovies: [],
     videoKey: '',
   };
 }

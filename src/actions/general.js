@@ -97,20 +97,56 @@ export const getMovieVideo = (id) => {
   };
 };
 
-export const getPopularMovies = () => {
-  const url = `${API_URL}/movie/popular?api_key=${API_KEY}&page=1`;
-  return (dispatch) => {
-    dispatch(setLoading(true));
+const getPopularMovies = () =>
+  new Promise((resolve) => {
+    const url = `${API_URL}/movie/popular?api_key=${API_KEY}&page=1`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        if (!data.success) {
-          dispatch(setError(data.status_message));
-        }
+        resolve(data);
+      });
+  });
+
+const getTopRatedMovies = () =>
+  new Promise((resolve) => {
+    const url = `${API_URL}/movie/top_rated?api_key=${API_KEY}&page=1`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => resolve(data));
+  });
+
+const getNowPlayingMovies = () =>
+  new Promise((resolve) => {
+    const url = `${API_URL}/movie/now_playing?api_key=${API_KEY}&page=1`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => resolve(data));
+  });
+
+export const getMainPageData = () => {
+  return (dispatch) => {
+    dispatch(setLoading(true));
+    Promise.all([
+      getNowPlayingMovies(),
+      getPopularMovies(),
+      getTopRatedMovies(),
+    ]).then((data) => {
+      const [nowPlayingData, popularData, topRatedData] = data;
+      if (
+        nowPlayingData.status_message ||
+        popularData.status_message ||
+        topRatedData.status_message
+      ) {
+        dispatch(setLoading(false));
+        dispatch(setError('Loading error'));
+      } else {
         batch(() => {
           dispatch(setLoading(false));
-          dispatch(setGeneralValue('popularMovies', data.results));
+          dispatch(setGeneralValue('nowPlayingMovies', nowPlayingData.results));
+          dispatch(setGeneralValue('popularMovies', popularData.results));
+          dispatch(setGeneralValue('topRatedMovies', topRatedData.results));
         });
-      });
+      }
+    });
   };
 };

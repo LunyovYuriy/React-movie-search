@@ -113,8 +113,8 @@ const Details = () => {
         />
         <p className="info-text">{movieDetails?.overview}</p>
       </div>
-      <div className="youtube-video">
-        {videoKey && (
+      {videoKey && (
+        <div className="youtube-video">
           <iframe
             title="youtube-video"
             src={`https://www.youtube.com/embed/${videoKey}`}
@@ -122,8 +122,8 @@ const Details = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        )}
-      </div>
+        </div>
+      )}
       {movieDetails?.imdb_id && (
         <a
           href={`https://www.imdb.com/title/${movieDetails?.imdb_id}`}
